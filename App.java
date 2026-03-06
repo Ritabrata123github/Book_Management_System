@@ -8,7 +8,7 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
-        BookDAO dao = new BookDAOImpl();   // Runtime Polymorphism
+        BookDAO dao = new BookDAOImpl();   // runtime polymorphism
 
         while(true)
         {
@@ -19,6 +19,7 @@ public class App {
             System.out.println("5 Display By Title");
             System.out.println("6 Exit");
 
+            System.out.print("Enter choice: ");
             int ch = sc.nextInt();
 
             switch(ch)
@@ -26,14 +27,19 @@ public class App {
 
             case 1:
 
-                System.out.println("Enter id title author price");
+                System.out.print("Enter Book ID: ");
+                int id = sc.nextInt();
 
-                int id=sc.nextInt();
-                String title=sc.next();
-                String author=sc.next();
-                double price=sc.nextDouble();
+                System.out.print("Enter Book Title: ");
+                String title = sc.next();
 
-                Book b=new Book(id,title,author,price);
+                System.out.print("Enter Author Name: ");
+                String author = sc.next();
+
+                System.out.print("Enter Book Price: ");
+                double price = sc.nextDouble();
+
+                Book b = new Book(id,title,author,price);
 
                 dao.addBook(b);
 
@@ -47,30 +53,40 @@ public class App {
 
             case 3:
 
-                System.out.println("Enter id author new price");
+                System.out.print("Enter Book ID: ");
+                int uid = sc.nextInt();
 
-                dao.updatePrice(sc.nextInt(), sc.next(), sc.nextDouble());
+                System.out.print("Enter Author Name: ");
+                String a = sc.next();
+
+                System.out.print("Enter New Price: ");
+                double p = sc.nextDouble();
+
+                dao.updatePrice(uid,a,p);
 
                 break;
 
             case 4:
 
-                System.out.println("Enter id");
+                System.out.print("Enter Book ID to Delete: ");
+                int did = sc.nextInt();
 
-                dao.deleteBook(sc.nextInt());
+                dao.deleteBook(did);
 
                 break;
 
             case 5:
 
-                System.out.println("Enter title");
+                System.out.print("Enter Book Title: ");
+                String t = sc.next();
 
-                dao.displayByTitle(sc.next());
+                dao.displayByTitle(t);
 
                 break;
 
             case 6:
 
+                System.out.println("Exiting Program...");
                 System.exit(0);
 
             }
